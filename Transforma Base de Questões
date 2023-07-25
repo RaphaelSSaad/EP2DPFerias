@@ -1,1 +1,13 @@
+def transforma_base(questoes: list) -> dict:
+    
+    nivel_das_questoes = {}
 
+    for i in questoes:
+        nivel = i['nivel']
+
+        if nivel not in nivel_das_questoes:
+            nivel_das_questoes[nivel] = []
+
+        nivel_das_questoes[nivel].append(i)
+
+    return nivel_das_questoes
