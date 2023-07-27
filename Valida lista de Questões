@@ -1,1 +1,45 @@
+def valida_questao(questao):
+    
+    alternativas = ['A', 'B', 'C', 'D']
+    niveis = ['facil', 'medio', 'dificil']
+    resultado = {}
 
+    if 'titulo' not in questao:
+        resultado['titulo'] = 'nao_encontrado'
+    elif not questao['titulo'].strip():
+        resultado['titulo'] = 'vazio'
+
+    if 'nivel' not in questao:
+        resultado['nivel'] = 'nao_encontrado'
+    elif questao['nivel'] not in niveis:
+        resultado['nivel'] = 'valor_errado'
+
+    if 'opcoes' not in questao:
+        resultado['opcoes'] = 'nao_encontrado'
+    elif len(questao['opcoes']) != 4:
+        resultado['opcoes'] = 'tamanho_invalido'
+    else:
+        for escolha in questao['opcoes']:
+            if escolha not in alternativas:
+                resultado['opcoes'] = 'chave_invalida_ou_nao_encontrada'
+            elif not questao['opcoes'][escolha].strip():
+                resultado.setdefault('opcoes', {})
+                resultado['opcoes'][escolha] = 'vazia'
+
+    if 'correta' not in questao:
+        resultado['correta'] = 'nao_encontrado'
+    elif questao['correta'] not in alternativas:
+        resultado['correta'] = 'valor_errado'
+
+    if len(questao) != 4:
+        resultado['outro'] = 'numero_chaves_invalido'
+
+    return resultado
+
+
+def valida_questoes (perguntas): 
+    i = []
+    for questao in perguntas:
+        defeito = valida_questao(questao)
+        i.append(defeito)
+    return i
