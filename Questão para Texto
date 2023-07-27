@@ -1,1 +1,11 @@
-
+def questao_para_texto(quest, numero):
+    opcoes = quest['opcoes']
+    titulo = quest['titulo']
+    
+    i = f"----------------------------------------\nQUESTAO {numero}\n\n{titulo}\n\nRESPOSTAS:\n"
+    
+    for opcao in opcoes:
+        conclusao = opcoes[opcao]
+        i += f"{opcao}: {conclusao}\n"
+    
+    return i
