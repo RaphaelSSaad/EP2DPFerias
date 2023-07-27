@@ -1,1 +1,16 @@
 
+import random
+def gera_ajuda(questao):
+    erradas=[]
+    dicas=[]
+    certa = questao['correta']
+    for alternativas in questao['opcoes']:
+        if alternativas != certa:
+            erradas.append(alternativas)
+    selecionada = random.choice(erradas)
+    for x in questao['opcoes']:
+        if x == selecionada and x not in dicas:
+            dica = questao['opcoes'][x]
+            dicas.append(x)
+    
+    return f'DICA:\nOpções certamente erradas:{dica}'
